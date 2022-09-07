@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        html {
+            font-family: sans-serif;
+        }
+
+        table {
+            {#border-collapse: collapse;#}
+            {#border: 2px solid rgb(200, 200, 200);#}
+            {#letter-spacing: 1px;#}
+            {#font-size: 0.8rem;#}
+        }
+
+        {#td,#}
+        {#th {#}
+        {#    border: 1px solid rgb(190, 190, 190);#}
+            {#padding: 10px 20px;#}
+        {#}#}
+
+        th {
+            background-color: rgb(235, 235, 235);
+        }
+
+        td {
+            text-align: center;
+
+        }
+
+        tr:nth-child(even) td {
+            background-color: rgb(250, 250, 250);
+        }
+
+        tr:nth-child(odd) td {
+            background-color: rgb(245, 245, 245);
+        }
+
+        {#caption {#}
+        {#    padding: 10px;#}
+        {#}#}
+
+        .add {
+            text-decoration: none;
+            background: pink;
+            border-radius: 10px;
+            {#padding: 10px;#}
+            font-weight: 600;
+        }
+
+        .a1 {
+            margin-bottom: 18px;
+        }
+
+        .bj {
+            text-decoration: none;
+        }
+
+        .dt {
+            text-decoration: none;
+        }
+
+      {#  .table {#}
+      {##}
+      {#  text-align: center;#}
+      {##}
+      {#}#}
+
+      .table thead {
+
+        {#font-size: 14px;#}
+
+        border-collapse: collapse;
+
+        width: 70%;
+
+        table-layout: fixed;
+
+        text-align: center;
+
+        line-height: 25px;
+
+        margin:0 auto;
+
+      }
+
+
+
+        #pageListTable thead tr {
+
+            border: dashed 1px #a59e9e;
+
+            border-left: none;
+
+            border-right: none;
+
+        }
+         #pageListTable tbody tr {
+
+            border: dashed 1px #a59e9e;
+
+            border-left: none;
+
+            border-right: none;
+
+        }
+    </style>
+    <script type="text/javascript"
+        src='../static/js/jquery.min.js'>
+    </script>
+    <script type="text/javascript"
+        src="../static/js/bootstrap-table.js">
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table.css">
+    <link rel="stylesheet" href="../static/css/sou.css">
+<script type="text/javascript">
+    function base64 (content) {
+       return window.btoa(unescape(encodeURIComponent(content)));
+    }
+    /*
+    *@tableId: table的Id
+    *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
+    */
+    function tableToExcel(tableID,fileName){
+        var table = document.getElementById(tableID);
+      var excelContent = table.innerHTML;
+      var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
+      excelFile += "<body><table>";
+      excelFile += excelContent;
+      excelFile += "</table></body>";
+      excelFile += "</html>";
+      var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
+      var a = document.createElement("a");
+      a.download = fileName+".xlsx";
+      a.href = link;
+      a.click();
+    }
+</script>
+
+</head>
+<body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+
+<h1 style="text-align: center;color: #c9c0c0">清单信息展示</h1>
+{#<button type="button" onclick="tableToExcel('pageListTable','data')">导出数据</button>#}
+{#<a class="bj1" href="http://10.60.120.31:8000/dowload2">导出</a>#}
+ <div class="search">
+  <form action="http://10.60.120.31:8000/search_word/" method="post">
+
+   <img src="./search_ico.png" alt="" >
+   <input type="text"  name="word" placeholder="请输入要搜索的清单编号" autofocus required>
+   <input type="submit" value="搜索">
+
+
+  </form>
+
+ </div>
+
+<script>
+    {% if messages %}
+
+{% for msg in messages %}
+
+alert('{{ msg.message }}');
+
+{% endfor %}
+
+{% endif %}
+</script>
+
+{# <script>#}
+{#          {% for msg in messages %}#}
+{##}
+{#             alert("{{ msg.message }}");#}
+{##}
+{#          {% endfor %}#}
+{##}
+{#    </script>#}
+<table id="pageListTable">
+
+<thead>
+    <tr>
+        <th>预录入统一编号</th>
+        <th>清单编号</th>
+        <th>手(账)册编号</th>
+        <th>经营企业编码</th>
+        <th>经营企业社会信用代码</th>
+        <th>经营企业名称</th>
+        <th>申报单位代码</th>
+        <th>申报单位社会信用代码</th>
+        <th>申报单位名称</th>
+        <th>企业内部编号</th>
+        <th>录入日期</th>
+        <th>清单申报日期</th>
+        <th>料件、成品标志</th>
+        <th>监管方式</th>
+        <th>运输方式</th>
+        <th>进出境关别</th>
+        <th>主管海关</th>
+        <th>核扣标志</th>
+        <th>录入单位代码</th>
+        <th>录入单位社会信用代码</th>
+        <th>录入单位名称</th>
+        <th>报关标志</th>
+        <th>清单类型</th>
+        <th>报关单申报日期</th>
+        <th>备注</th>
+{#        <th>查看信息</th>#}
+    </tr>
+</thead>
+
+<tbody id="pageListTableBody">
+  <form action="http://10.60.120.31:8000/dowload1/" method="post">
+    {% for i in a %}
+        <tr>
+
+            <td style="width: 185px"> <a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}"><input type="checkbox" name="data1" value={{ i.0 }}>{{ i.0 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.1 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.2 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.3 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.4 }}</a></td>
+
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.5 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.6 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.7 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.8 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.9 }}</a></td>
+
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.10 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.11 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.12 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.13 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.14 }}</a></td>
+
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.15 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.16 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.17 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.18 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.19 }}</a></td>
+
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.20 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.21 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.22 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.23 }}</a></td>
+            <td><a class="bj" href="http://10.60.120.31:8000/p_data?username={{ i.0 }}">{{ i.24 }}</a></td>
+
+{#            <td>#}
+{#                <a class="bj" href="http://127.0.0.1:8000/p_data?username={{ i.0 }}">查看详情</a>#}
+{#                <a class="dt" href="http://127.0.0.1:8000/delete/?username={{ i.username }}">删除</a>#}
+{#            </td>#}
+        </tr>
+    {% endfor %}
+        <div>
+          <input type="submit" value="导出数据">
+        </div>
+  </form>
+</tbody>
+
+
+</table>
+
+<div id="pages" style="float: right;">
+   <span id="spanFirst">首页</span>
+    <span id="spanPre">上一页</span>
+    <span id="spanNext">下一页</span>
+    <span id="spanLast">尾页</span>
+    第<strong id="spanPageNum"></strong>页/共
+    <strong id="spanTotalPage"></strong>页 </div>
+</div>
+{#<link rel="stylesheet" href="../static/js/fen.js">#}
+<script type="text/javascript">
+    var theUL = document.getElementById("pageListTableBody");
+    var totalPage = document.getElementById("spanTotalPage");
+    var pageNum = document.getElementById("spanPageNum"); //获取当前页<span>
+    var spanPre = document.getElementById("spanPre"); //获取上一页<span>
+    var spanNext = document.getElementById("spanNext"); //获取下一页<span>
+    var spanFirst = document.getElementById("spanFirst"); //获取第一页<span>
+    var spanLast = document.getElementById("spanLast"); //获取最后一页<span>
+    var numberRowsInTable = theUL.getElementsByTagName("tr").length; //记录总条数
+    var pageSize = 20; //每页显示的记录条数
+    var page = 1; //当前页，默认第一页
+
+    //下一页
+    function next(){
+        hideTable();
+        currentRow = pageSize * page;
+        maxRow = currentRow + pageSize;
+        if ( maxRow > numberRowsInTable ) maxRow = numberRowsInTable;
+        for ( var i = currentRow; i< maxRow; i++ ){
+            theUL.getElementsByTagName("tr")[i].style.display = '';
+        }
+        page++;
+        if ( maxRow == numberRowsInTable ) {
+            nextText();
+            lastText();
+        }
+        showPage();
+        preLink();
+        firstLink();
+    }
+
+    //上一页
+    function pre(){
+        hideTable();
+        page--;
+        currentRow = pageSize * page;
+        maxRow = currentRow - pageSize;
+        if ( currentRow > numberRowsInTable ) currentRow = numberRowsInTable;
+        for ( var i = maxRow; i< currentRow; i++ ){
+            theUL.getElementsByTagName("tr")[i].style.display = '';
+        }
+        if ( maxRow == 0 ){
+            preText();
+            firstText();
+        }
+        showPage();
+        nextLink();
+        lastLink();
+    }
+
+    //第一页
+    function first(){
+        hideTable();
+        page = 1;
+        for ( var i = 0; i<pageSize; i++ ){
+            theUL.getElementsByTagName("tr")[i].style.display = '';
+        }
+        showPage();
+        firstText();
+        preText();
+        nextLink();
+        lastLink();
+    }
+
+    //最后一页
+    function last(){
+        hideTable();
+        page = pageCount();
+        currentRow = pageSize * (page - 1);
+        for ( var i = currentRow; i<numberRowsInTable; i++ ){
+            theUL.getElementsByTagName("tr")[i].style.display = '';
+        }
+        showPage();
+        preLink();
+        nextText();
+        firstLink();
+        lastText();
+    }
+
+    function hideTable(){
+        for ( var i = 0; i<numberRowsInTable; i++ ){
+            theUL.getElementsByTagName("tr")[i].style.display = 'none';
+        }
+    }
+
+    function showPage(){
+        pageNum.innerHTML = page;
+    }
+
+    //总共页数
+    function pageCount(){
+        return Math.ceil(numberRowsInTable/pageSize);
+    }
+    //显示链接
+    function preLink(){
+        spanPre.innerHTML = "<a href='javascript:pre();'>上一页</a>";
+    }
+    function preText(){
+        spanPre.innerHTML = "上一页";
+    }
+    function nextLink(){
+        spanNext.innerHTML = "<a href='javascript:next();'>下一页</a>";
+    }
+    function nextText(){
+        spanNext.innerHTML = "下一页";
+    }
+    function firstLink(){
+        spanFirst.innerHTML = "<a href='javascript:first();'>首页</a>";
+    }
+    function firstText(){
+        spanFirst.innerHTML = "首页";
+    }
+    function lastLink(){
+        spanLast.innerHTML = "<a href='javascript:last();'>末页</a>";
+    }
+    function lastText(){
+        spanLast.innerHTML = "末页";
+    }
+
+    //隐藏
+    function hide(){
+        for ( var i = pageSize; i<numberRowsInTable; i++ ){
+            theUL.getElementsByTagName("tr")[i].style.display = 'none';
+        }
+        totalPage.innerHTML = pageCount();
+        pageNum.innerHTML = '1';
+        nextLink();
+        lastLink();
+    }
+    hide();
+
+
+
+</script>
+
+</body>
+</html>

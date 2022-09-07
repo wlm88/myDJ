@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <title>销售订单系统</title>
+</head>
+
+<body>
+<section style="background-image: url(../static/img/rj.png)">
+
+    <div class="container" style="height: 472px;border-radius: 10px;backdrop-filter: blur(0px)">
+        <div class="form">
+            <h2 style="padding-left: 110px">注册</h2>
+            <form action="http://10.60.120.31:8000/register1/" method="post">
+                <div class="inputBox">
+                    <input type="text" name="username" placeholder="请输入新用户名" autofocus required>
+
+                </div>
+                <div class="inputBox">
+                    <input type="password" placeholder="请输入密码" name="password" required>
+
+                </div>
+
+                <div class="inputBox">
+                    <input type="submit" value="确定">
+
+                </div>
+
+                <p class="forget">已经注册<a href="http://10.60.120.31:8000/login">
+                    登录
+                </a></p>
+            </form>
+        </div>
+    </div>
+    </div>
+</section>
+<script type="text/javascript">
+
+    function checkPhone() {
+        var phone = document.getElementById('phone').value;
+        if (!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phone))) {
+            alert("手机号码有误，请重填");
+            return false;
+        }
+    }
+
+    {% for msg in messages %}
+
+        alert("{{ msg.message }}");
+
+    {% endfor %}
+
+
+</script>
+</body>
+
+</html>

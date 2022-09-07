@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        {#table {#}
+        {#    border-collapse: collapse;#}
+        {#    border: 2px solid rgb(200, 200, 200);#}
+        {#    letter-spacing: 1px;#}
+        {#    font-size: 0.8rem;#}
+        {#}#}
+
+        {#td,#}
+        {#th {#}
+        {#    border: 1px solid rgb(190, 190, 190);#}
+            {#padding: 10px 20px;#}
+        {#}#}
+
+        th {
+            background-color: rgb(235, 235, 235);
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr:nth-child(even) td {
+            background-color: rgb(250, 250, 250);
+        }
+
+        tr:nth-child(odd) td {
+            background-color: rgb(245, 245, 245);
+        }
+
+        caption {
+            padding: 10px;
+        }
+
+        .add {
+            text-decoration: none;
+            background: pink;
+            border-radius: 10px;
+            {#padding: 10px;#}
+            font-weight: 600;
+        }
+
+        .a1 {
+            margin-bottom: 18px;
+        }
+
+        .bj {
+            text-decoration: none;
+        }
+
+        .dt {
+            text-decoration: none;
+        }
+
+        .table {
+
+        text-align: center;
+
+      }
+
+      .table thead {
+
+        font-size: 14px;
+
+        border-collapse: collapse;
+
+        width: 70%;
+
+        table-layout: fixed;
+
+        text-align: center;
+
+        line-height: 25px;
+
+        margin:0 auto;
+
+      }
+
+
+
+        #pageListTable thead tr {
+
+            border: dashed 1px #a59e9e;
+
+            border-left: none;
+
+            border-right: none;
+
+        }
+         #pageListTable tbody tr {
+
+            border: dashed 1px #a59e9e;
+
+            border-left: none;
+
+            border-right: none;
+
+        }
+    </style>
+
+</head>
+<body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<h1 style="color: #00d2ff">清单信息展示</h1>
+<table class="table table-bordered">
+<thead>
+
+</thead>
+<tbody>
+        <tr>
+            <td><div style="color: #3d3f92;font-weight: bold">预录入统一编号：</div>{{ data.0 }}</td>
+            <td><div style="color:#3d3f92;font-weight: bold">清单编号：</div>{{ data.1 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">手(账)册编号：</div>{{ data.2 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">经营企业编码：</div>{{ data.3 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">经营企业社会信用代码：</div>{{ data.4 }}</td>
+        </tr>
+        <tr>
+            <td><div style="color: #3d3f92;font-weight: bold">经营企业名称：</div>{{ data.5 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">申报单位代码：</div>{{ data.6 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">申报单位社会信用代码：</div>{{ data.7 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">申报单位名称：</div>{{ data.8 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">企业内部编号：</div>{{ data.9 }}</td>
+        </tr>
+        <tr>
+            <td><div style="color: #3d3f92;font-weight: bold">录入日期：</div>{{ data.10 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">清单申报日期：</div>{{ data.11 }}</td>
+
+            <td><div style="color: #3d3f92;font-weight: bold">料件、成品标志：</div>{{ data.12 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">监管方式：</div>{{ data.13 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">运输方式：</div>{{ data.14 }}</td>
+        </tr>
+        <tr>
+            <td><div style="color: #3d3f92;font-weight: bold">进出境关别：</div>{{ data.15 }}</td>
+
+            <td><div style="color: #3d3f92;font-weight: bold">主管海关：</div>{{ data.16 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">核扣标志：</div>{{ data.17 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">录入单位代码：</div>{{ data.18 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">录入单位社会信用代码:</div>{{ data.19 }}</td>
+        </tr>
+        <tr>
+            <td><div style="color: #3d3f92;font-weight: bold">录入单位名称 :</div>{{ data.20 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">报关标志 :</div>{{ data.21 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">清单类型 :</div>{{ data.22 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">报关单申报日期 :</div>{{ data.23 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold">备注 :</div>{{ data.24 }}</td>
+        </tr>
+
+</tbody>
+</table>
+<table>
+    <h1 style="color: #60a9ef;font-weight: bold">商品明细</h1>
+<thead>
+    <tr>
+        <th>商品序号</th>
+        <th>备案序号</th>
+        <th>商品料号</th>
+        <th>商品编码</th>
+        <th>商品名称</th>
+        <th>规格型号</th>
+        <th>产销国（地区）</th>
+        <th>申报单价</th>
+        <th>申报总价</th>
+        <th>币制</th>
+        <th>申报数量</th>
+        <th>申报单位</th>
+        <th>法定单位</th>
+        <th>法定数量</th>
+        <th>法定第二单位</th>
+        <th>法定第二数量</th>
+        <th>征免方式</th>
+        <th>单耗版本号</th>
+
+{#        <th>查看信息</th>#}
+    </tr>
+</thead>
+    {% for a1 in a1 %}
+<tr>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.0 }}</td>
+            <td><div style="color: #3d3f92;font-weight: bold"> </div>{{ a1.1 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.2 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.3 }}</td>
+
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.4 }}</td>
+
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.5 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.6 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.7 }}</td>
+
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.8 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.9 }}</td>
+
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.10 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.11 }}</td>
+
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.12 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.13 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.14 }}</td>
+
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.15 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold"></div>{{ a1.16 }}</td>
+    <td><div style="color: #3d3f92;font-weight: bold">{{ a1.17 }}</div></td>
+
+</tr>
+    {% endfor %}
+</table>
+{#<input type="text" id="text" />#}
+{#<script type="text/javascript">#}
+{#$(function(){#}
+{#	$("#tab").on("click", ":button", function(event){#}
+{#		$("#text").val($(this).closest("tr").find("td").eq(0).text());#}
+{#	});#}
+{#});#}
+{#</script>#}
+</body>
+</html>

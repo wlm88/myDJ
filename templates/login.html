@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <title>销售订单信息系统</title>
+</head>
+
+<body >
+    <section style="background-image: url(../static/img/rj.png);background-size: cover">
+        <!-- 背景颜色 -->
+      <!--   <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">-->
+            <!-- 背景圆 -->
+             <div class="circle" style="--x:0"></div>
+            <div class="circle" style="--x:1"></div>
+            <div class="circle" style="--x:2"></div>
+            <div class="circle" style="--x:3"></div>
+            <div class="circle" style="--x:4"></div>
+            <!-- 登录框 -->
+            <div class="container" style="backdrop-filter: blur(3px)">
+                <div class="form">
+                    <h2>登录</h2>
+                    <form action="http://10.60.120.31:8000/login1/" method="post">
+                        <div class="inputBox">
+                            <input type="text"  name="username" placeholder="用户名" autofocus required>
+
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" placeholder="密码" name="password" required >
+
+                        </div>
+                        <div class="inputBox">
+                            <input type="submit" value="登录">
+
+                        </div>
+
+                        <p class="forget">没有账户?<a href="http://10.60.120.31:8000/register" style="color: rgba(224,201,175,0.94)">
+                                注册
+                            </a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <script>
+          {% for msg in messages %}
+             alert("{{ msg.message }}");
+          {% endfor %}
+    </script>
+
+</body>
+
+</html>
