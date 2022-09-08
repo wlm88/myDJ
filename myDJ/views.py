@@ -190,35 +190,6 @@ def search_by_word(request):
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 def show(request):
-    # conn = MySQLdb.connect(host="localhost", user="root", passwd="123456", db="test", charset="utf8")
-    # with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        # cur = conn.cursor()
-    # curr_page = request.GET["page"]
-    # a=int (curr_page)* 3
-    # sql = "SELECT *, (select count (*) from check_information) from check_information limit " + str(a) + "3;"
-    # cursor.execute(sql)
-    # info = cursor.fetchal1()
-    # results = []
-    # for i in info:
-    #     results.append({'id': i[0], "95月xn头ms ": i[1]})
-    #     count = i[2]
-    # if count%3==0:
-    #     num_pages=count/3
-    # else:
-    #     num_pages = count/3+1
-    # last_pages = int(num_pages)-1
-    # int_curr_page = int(curr_page)
-    # if int_curr_page == 0:
-    #     has_previous = False
-    # else:
-    #     has_previous = True
-    # if int_curr_page == int(num_pages) - 1:
-    #     has_next = False
-    # else:
-    #     has_next = True
-    # previous_page_number = int_curr_page - 1
-    # next_page_number = int_curr_page + 1
-
     cursor.execute("""SELECT pre_recorded,listing_number,book_number,enterprise_code,credit_code,enterprise_name
      ,applicant_code,applicant_credit_code,applicant_Name,enterprise_internal_number,entry_date,list_declaration_date,
       products_marks,regulatory,transportation,entry_exit,customs,nuclear_button,input_code,input_social_credit_code,
