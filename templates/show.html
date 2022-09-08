@@ -116,30 +116,7 @@
     </script>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.0/dist/bootstrap-table.css">
     <link rel="stylesheet" href="../static/css/sou.css">
-<script type="text/javascript">
-    function base64 (content) {
-       return window.btoa(unescape(encodeURIComponent(content)));
-    }
-    /*
-    *@tableId: table的Id
-    *@fileName: 要生成excel文件的名字（不包括后缀，可随意填写）
-    */
-    function tableToExcel(tableID,fileName){
-        var table = document.getElementById(tableID);
-      var excelContent = table.innerHTML;
-      var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
-      excelFile += "<head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>";
-      excelFile += "<body><table>";
-      excelFile += excelContent;
-      excelFile += "</table></body>";
-      excelFile += "</html>";
-      var link = "data:application/vnd.ms-excel;base64," + base64(excelFile);
-      var a = document.createElement("a");
-      a.download = fileName+".xlsx";
-      a.href = link;
-      a.click();
-    }
-</script>
+
 
 </head>
 <body>
@@ -284,7 +261,7 @@ alert('{{ msg.message }}');
     var pageSize = 20; //每页显示的记录条数
     var page = 1; //当前页，默认第一页
 
-    //下一页
+
     function next(){
         hideTable();
         currentRow = pageSize * page;
@@ -303,7 +280,7 @@ alert('{{ msg.message }}');
         firstLink();
     }
 
-    //上一页
+  
     function pre(){
         hideTable();
         page--;
@@ -322,7 +299,7 @@ alert('{{ msg.message }}');
         lastLink();
     }
 
-    //第一页
+
     function first(){
         hideTable();
         page = 1;
@@ -336,7 +313,7 @@ alert('{{ msg.message }}');
         lastLink();
     }
 
-    //最后一页
+ 
     function last(){
         hideTable();
         page = pageCount();
@@ -361,11 +338,11 @@ alert('{{ msg.message }}');
         pageNum.innerHTML = page;
     }
 
-    //总共页数
+
     function pageCount(){
         return Math.ceil(numberRowsInTable/pageSize);
     }
-    //显示链接
+  
     function preLink(){
         spanPre.innerHTML = "<a href='javascript:pre();'>上一页</a>";
     }
